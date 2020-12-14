@@ -23,4 +23,8 @@ app.get("/dogs", function (req, res) {
     res.send({ msg: "Hello Dogs" });
 });
 
+
+app.post("/cats/add", function (req, res) {
+    res.send({ msg: "Hello Cats Post" });
+});
  

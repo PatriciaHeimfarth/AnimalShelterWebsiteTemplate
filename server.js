@@ -23,6 +23,15 @@ app.get("/animals/dogs", function (req, res) {
     res.send({ msg: "Hello Dogs" });
 });
 
+app.get("/animals", function (req, res) {
+    Animal.find(function(err, animals) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(animals);
+        }
+    });
+});
 
 app.post("/animals/add", function (req, res) {
     const animal = new Animal({

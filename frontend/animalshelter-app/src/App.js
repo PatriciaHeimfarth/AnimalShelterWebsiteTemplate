@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Main from "./components/main.component";
 class App extends Component {
   render() {
     return (
-
       <Router>
         <div className="container">
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -33,6 +33,10 @@ class App extends Component {
               </div>
             </div>
           </nav>
+          <br/>
+          <br/>
+          <br/>
+          <Route path="/" exact component={Main} />
         </div>
       </Router>
     );

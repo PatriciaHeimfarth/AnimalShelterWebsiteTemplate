@@ -9,8 +9,9 @@ const animalSchema = new mongoose.Schema({
   Name: {
     type: String,
     required: true,
+  },
+  Image: {
+      type: String
   }
-
-  //TODO: Image
 })
 module.exports = mongoose.model('Animal', animalSchema)

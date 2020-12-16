@@ -1,16 +1,17 @@
 const express = require("express");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const mongoose = require('mongoose');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const DIR = '../frontend/animalshelter-app/public/images/';
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(cors());
 let Animal = require('./models/animal');
 
 app.listen(port, () => console.log("[Server] online " + new Date()));

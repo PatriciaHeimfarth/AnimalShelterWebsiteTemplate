@@ -45,9 +45,9 @@ export default class CatList extends Component {
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th>Name</th>  
-                            <th>s</th>
-                            <th>s</th>
+                            <th>Species</th>  
+                            <th>Name</th>
+                            <th>Image</th>
                         </tr>
                     </thead>
                     <tbody>

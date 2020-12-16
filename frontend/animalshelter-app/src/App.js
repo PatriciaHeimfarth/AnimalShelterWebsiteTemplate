@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Main from "./components/main.component";
 import DogList from "./components/doglist.component";
 import CatList from "./components/catlist.component";
+import AddAnimal from "./components/add-animal.component";
 
 //Styles
 import './App.css';
@@ -45,6 +46,7 @@ class App extends Component {
           <Route path="/dogs" component={DogList} />
           <Route path="/cats" component={CatList} />
           <Route path="/" exact component={Main} />
+          <Route path="/add-animal" exact component={AddAnimal} />
         </div>
       </Router>
     );

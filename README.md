@@ -1,2 +1,2 @@
 # AnimalShelterWebsiteTemplate
-A Website Template for animal shelters
+A Website Template for animal shelters - written in Node and React.

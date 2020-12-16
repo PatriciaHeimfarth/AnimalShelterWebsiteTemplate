@@ -37,12 +37,12 @@ export default class AddAnimal extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        
+
         console.log(`${this.state.animal_name},  
         ${this.state.animal_species},
         ${this.state.animal_image}`);
-       
-        
+
+
         this.setState({
             animal_name: '',
             animal_species: '',
@@ -52,27 +52,30 @@ export default class AddAnimal extends Component {
 
     render() {
         return (
-            <div style={{marginTop: 10}}>
+            <div style={{ marginTop: 10 }}>
                 <h3>Add new Animal</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group"> 
+                    <div className="form-group">
                         <label>Name: </label>
-                        <input  type="text"
-                                className="form-control"
-                                value={this.state.animal_name}
-                                onChange={this.onChangeAnimalName}
-                                required="true"
-                                />
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.animal_name}
+                            onChange={this.onChangeAnimalName}
+                            required="true"
+                        />
                     </div>
                     <div className="form-group">
                         <label>Species: </label>
-                        <input 
-                                type="text" 
-                                className="form-control"
-                                value={this.state.animal_specie}
-                                onChange={this.onChangeAnimalSpecies}
-                                required="true"
-                                />
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.animal_specie}
+                            onChange={this.onChangeAnimalSpecies}
+                            required="true"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input type="file"  required="true" onChange={this.onChangeAnimalImage} />
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Add new Animal" className="btn btn-primary" />

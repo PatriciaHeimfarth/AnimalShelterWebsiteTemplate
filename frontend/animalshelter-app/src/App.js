@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+//Components
 import Main from "./components/main.component";
+import DogList from "./components/doglist.component";
+import CatList from "./components/catlist.component";
+
+//Styles
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+
 class App extends Component {
   render() {
     return (
@@ -37,7 +45,8 @@ class App extends Component {
           <br/>
           <br/>
           <br/>
-         
+          <Route path="/dogs" component={DogList} />
+          <Route path="/cats" component={CatList} />
           <Route path="/" exact component={Main} />
         </div>
       </Router>

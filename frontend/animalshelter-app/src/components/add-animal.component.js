@@ -61,6 +61,7 @@ export default class AddAnimal extends Component {
                                 className="form-control"
                                 value={this.state.animal_name}
                                 onChange={this.onChangeAnimalName}
+                                required="true"
                                 />
                     </div>
                     <div className="form-group">
@@ -70,6 +71,7 @@ export default class AddAnimal extends Component {
                                 className="form-control"
                                 value={this.state.animal_specie}
                                 onChange={this.onChangeAnimalSpecies}
+                                required="true"
                                 />
                     </div>
                     <div className="form-group">

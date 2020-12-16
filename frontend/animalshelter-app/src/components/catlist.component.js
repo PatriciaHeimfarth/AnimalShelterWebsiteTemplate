@@ -17,8 +17,6 @@ export default class CatList extends Component {
     }
 
     componentDidMount() {
-        console.log('I was triggered during componentDidMount')
-
         axios.get('http://localhost:4000/animals/')
             .then(response => {
                 this.setState({ cats: response.data });
@@ -40,8 +38,6 @@ export default class CatList extends Component {
     }
 
     render() {
-        console.log('I was triggered during render')
-
         return (
             <div>
                 <h3>Cat List</h3>

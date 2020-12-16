@@ -31,8 +31,11 @@ export default class CatList extends Component {
     }
 
     catsList() {
-        return this.state.cats.map(function(currentCat, i){
-            return <Cat cat={currentCat} key={i} />;
+        return this.state.cats.map(function(currentAnimal, i){
+            if(currentAnimal.Species == "Cat"){
+                return <Cat cat={currentAnimal} key={i} />;
+            }
+            
         })
     }
 

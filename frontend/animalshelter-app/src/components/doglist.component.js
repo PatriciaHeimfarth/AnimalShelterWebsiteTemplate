@@ -6,7 +6,7 @@ const Dog = props => (
     <tr>
         <td>{props.dog.Species}</td>
         <td>{props.dog.Name}</td>
-        <td>{props.dog.Image}</td>
+        <td><img src={props.dog.Image} height="100"></img></td>
     </tr>
 )
 
@@ -31,6 +31,10 @@ export default class DogList extends Component {
     dogsList() {
         return this.state.dogs.map(function(currentAnimal, i){
             if(currentAnimal.Species == "Dog"){
+                if(currentAnimal.Image !== undefined){
+                    currentAnimal.Image = (currentAnimal.Image).substring(18);
+                    console.log(currentAnimal.Image);
+                }
                 return <Dog dog={currentAnimal} key={i} />;
             }
             

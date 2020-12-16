@@ -31,6 +31,10 @@ export default class CatList extends Component {
     catsList() {
         return this.state.cats.map(function(currentAnimal, i){
             if(currentAnimal.Species == "Cat"){
+                if(currentAnimal.Image !== undefined){
+                    currentAnimal.Image = (currentAnimal.Image).substring(18);
+                    console.log(currentAnimal.Image);
+                }
                 return <Cat cat={currentAnimal} key={i} />;
             }
             

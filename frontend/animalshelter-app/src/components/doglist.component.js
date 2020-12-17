@@ -32,7 +32,7 @@ export default class DogList extends Component {
         return this.state.dogs.map(function(currentAnimal, i){
             if(currentAnimal.Species == "Dog"){
                 if(currentAnimal.Image !== undefined){
-                    currentAnimal.Image = (currentAnimal.Image).substring(18);
+                    currentAnimal.Image = (currentAnimal.Image).substring(18) ;
                     console.log(currentAnimal.Image);
                 }
                 return <Dog dog={currentAnimal} key={i} />;

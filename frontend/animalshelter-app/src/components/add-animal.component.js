@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+const axios = require("axios");
+
 
 export default class AddAnimal extends Component {
 
@@ -11,42 +13,45 @@ export default class AddAnimal extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            animal_name: '',
-            animal_species: '',
-            animal_image: '',
+            Name: '',
+            Species: '',
+            Image: '',
         }
     }
 
     onChangeAnimalName(e) {
         this.setState({
-            animal_name: e.target.value
+            Name: e.target.value
         });
     }
 
     onChangeAnimalSpecies(e) {
         this.setState({
-            animal_species: e.target.value
+            Species: e.target.value
         });
     }
 
     onChangeAnimalImage(e) {
         this.setState({
-            animal_image: e.target.value
+            Image: e.target.files[0] 
         });
     }
 
     onSubmit(e) {
         e.preventDefault();
-
-        console.log(`${this.state.animal_name},  
-        ${this.state.animal_species},
-        ${this.state.animal_image}`);
-
+        const formData = new FormData();
+        formData.append("Name", this.state.Name)
+        formData.append("Species", this.state.Species)
+        
+        formData.append("Image", this.state.Image)
+  
+        axios.post('http://localhost:4000/animals/add', formData )
+            .then(res => console.log(res.data));
 
         this.setState({
-            animal_name: '',
-            animal_species: '',
-            animal_image: '',
+            Name: '',
+            Species: '',
+            Image: '',
         })
     }
 
@@ -59,7 +64,7 @@ export default class AddAnimal extends Component {
                         <label>Name: </label>
                         <input type="text"
                             className="form-control"
-                            value={this.state.animal_name}
+                            value={this.state.Name}
                             onChange={this.onChangeAnimalName}
                             required="true"
                         />
@@ -69,13 +74,13 @@ export default class AddAnimal extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            value={this.state.animal_specie}
+                            value={this.state.Species}
                             onChange={this.onChangeAnimalSpecies}
                             required="true"
                         />
                     </div>
                     <div className="form-group">
-                        <input type="file"  required="true" onChange={this.onChangeAnimalImage} />
+                        <input type="file" name="Image"  required="true" onChange={this.onChangeAnimalImage} />
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Add new Animal" className="btn btn-primary" />

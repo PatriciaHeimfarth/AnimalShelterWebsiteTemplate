@@ -14,7 +14,7 @@ export default class AddAnimal extends Component {
 
         this.state = {
             Name: '',
-            Species: '',
+            Species: 'Dog',
             Image: '',
         }
     }
@@ -33,7 +33,7 @@ export default class AddAnimal extends Component {
 
     onChangeAnimalImage(e) {
         this.setState({
-            Image: e.target.files[0] 
+            Image: e.target.files[0]
         });
     }
 
@@ -42,10 +42,10 @@ export default class AddAnimal extends Component {
         const formData = new FormData();
         formData.append("Name", this.state.Name)
         formData.append("Species", this.state.Species)
-        
+
         formData.append("Image", this.state.Image)
-  
-        axios.post('http://localhost:4000/animals/add', formData )
+
+        axios.post('http://localhost:4000/animals/add', formData)
             .then(res => console.log(res.data));
 
         this.setState({
@@ -71,16 +71,15 @@ export default class AddAnimal extends Component {
                     </div>
                     <div className="form-group">
                         <label>Species: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.Species}
-                            onChange={this.onChangeAnimalSpecies}
-                            required="true"
-                        />
+                        <select className="form-control" required="true" value={this.state.Species} 
+                         onChange={this.onChangeAnimalSpecies}>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                            <option value="Bird">Bird</option>
+                        </select>
                     </div>
                     <div className="form-group">
-                        <input type="file" name="Image"  required="true" onChange={this.onChangeAnimalImage} />
+                        <input type="file" name="Image" required="true" onChange={this.onChangeAnimalImage} />
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Add new Animal" className="btn btn-primary" />

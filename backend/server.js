@@ -64,13 +64,15 @@ app.get("/animals", function (req, res) {
 });
 
 
-app.post('/animals/add', upload.single('Image'), (req, res, next) => {   
+app.post('/animals/add', upload.single('Image'), (req, res, next) => {  
+    console.log(req.file) 
     const animal = new Animal({
         _id: new mongoose.Types.ObjectId(),
         Species: req.body.Species,
         Name: req.body.Name,
-        Image: DIR + req.file.fileName
+        Image: req.file.filename
     });
+     
     animal.save().then(result => {
         res.status(201).json({
             message: "New animal successfully created!",

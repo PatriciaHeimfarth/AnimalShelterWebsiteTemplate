@@ -70,6 +70,9 @@ app.post('/animals/add', upload.single('Image'), (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         Species: req.body.Species,
         Name: req.body.Name,
+        Description: req.body.Description,
+        Birthdate: req.body.Birthdate,
+        IsEmergencyCase: req.body.IsEmergencyCase,
         Image: DIR + req.file.filename
     });
      

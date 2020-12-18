@@ -10,12 +10,18 @@ export default class AddAnimal extends Component {
         this.onChangeAnimalName = this.onChangeAnimalName.bind(this);
         this.onChangeAnimalSpecies = this.onChangeAnimalSpecies.bind(this);
         this.onChangeAnimalImage = this.onChangeAnimalImage.bind(this);
+        this.onChangeAnimalDescription = this.onChangeAnimalDescription.bind(this);
+        this.onChangeAnimalBirthdate = this.onChangeAnimalBirthdate.bind(this);
+        this.onChangeAnimalIsEmergencyCase = this.onChangeAnimalIsEmergencyCase.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             Name: '',
             Species: 'Dog',
             Image: '',
+            Description: '',
+            Birthdate: '',
+            IsEmergencyCase: true
         }
     }
 
@@ -37,21 +43,43 @@ export default class AddAnimal extends Component {
         });
     }
 
+    onChangeAnimalDescription(e) {
+        this.setState({
+            Description: e.target.value
+        });
+    }
+
+    onChangeAnimalBirthdate(e) {
+        this.setState({
+            Birthdate: e.target.value
+        });
+    }
+
+    onChangeAnimalIsEmergencyCase(e) {
+        this.setState({
+            IsEmergencyCase: e.target.value
+        });
+    }
     onSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
         formData.append("Name", this.state.Name)
         formData.append("Species", this.state.Species)
-
+        formData.append("Description", this.state.Description)
         formData.append("Image", this.state.Image)
+        formData.append("Birthdate", this.state.Birthdate)
+        formData.append("IsEmergencyCase", this.state.IsEmergencyCase)
 
         axios.post('http://localhost:4000/animals/add', formData)
             .then(res => console.log(res.data));
 
         this.setState({
             Name: '',
-            Species: '',
+            Species: 'Dog',
             Image: '',
+            Description: '',
+            Birthdate: '',
+            IsEmergencyCase: true
         })
     }
 
@@ -71,16 +99,46 @@ export default class AddAnimal extends Component {
                     </div>
                     <div className="form-group">
                         <label>Species: </label>
-                        <select className="form-control" required="true" value={this.state.Species} 
-                         onChange={this.onChangeAnimalSpecies}>
+                        <select className="form-control" required="true" value={this.state.Species}
+                            onChange={this.onChangeAnimalSpecies}>
                             <option value="Dog">Dog</option>
                             <option value="Cat">Cat</option>
                             <option value="Bird">Bird</option>
                         </select>
                     </div>
                     <div className="form-group">
+                        <label>Description: </label>
+                        <textarea type="text"
+                            className="form-control"
+                            value={this.state.Description}
+                            onChange={this.onChangeAnimalDescription}
+                            required="true"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Birthdate: </label>
+                        <input type="date"
+                            className="form-control"
+                            value={this.state.Birthdate}
+                            onChange={this.onChangeAnimalBirthdate}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Is Emergency Case: </label>
+                        <br></br>
+                        <input type="checkbox"
+                            className="form-control"
+                            checked={this.state.IsEmergencyCase.toString()}
+                            onChange={this.onChangeAnimalIsEmergencyCase}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Image: </label>
+                        <br></br>
                         <input type="file" name="Image" required="true" onChange={this.onChangeAnimalImage} />
                     </div>
+                    <br></br>
+                    <br></br>
                     <div className="form-group">
                         <input type="submit" value="Add new Animal" className="btn btn-primary" />
                     </div>

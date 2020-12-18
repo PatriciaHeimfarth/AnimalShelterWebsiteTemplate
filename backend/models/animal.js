@@ -23,7 +23,7 @@ const animalSchema = new mongoose.Schema({
      
   },
 
-  EmergencyCase: {
+  IsEmergencyCase: {
     type: Boolean,
      
   }

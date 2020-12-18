@@ -7,6 +7,9 @@ const Dog = props => (
         <td>{props.dog.Species}</td>
         <td>{props.dog.Name}</td>
         <td><img src={props.dog.Image} height="100"></img></td>
+        <td>{props.dog.Description}</td>
+        <td>{props.dog.Birthdate}</td>
+        <td>{props.dog.IsEmergencyCase.toString() }</td>
     </tr>
 )
 
@@ -51,6 +54,9 @@ export default class DogList extends Component {
                             <th>Species</th>  
                             <th>Name</th>
                             <th>Image</th>
+                            <th>Description</th>
+                            <th>Birthdate</th>
+                            <th>Emergency?</th>
                         </tr>
                     </thead>
                     <tbody>

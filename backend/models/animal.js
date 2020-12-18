@@ -11,9 +11,23 @@ const animalSchema = new mongoose.Schema({
     required: true,
   },
   Image: {
-      type: String
+    type: String,
+     
+  },
+  Description: {
+    type: String,
+   
+  },
+  Birthdate: {
+    type: Date,
+     
+  },
+
+  EmergencyCase: {
+    type: Boolean,
+     
   }
 
-  //TODO: Needs help attribute; description
+  
 })
 module.exports = mongoose.model('Animal', animalSchema)

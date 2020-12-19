@@ -75,6 +75,7 @@ app.get("/animals", function (req, res) {
 
 app.post('/animals/add', upload.single('Image'), (req, res, next) => {  
     console.log(req.file) 
+    connectEnsureLogin.ensureLoggedIn();
     const animal = new Animal({
         _id: new mongoose.Types.ObjectId(),
         Species: req.body.Species,
@@ -103,12 +104,7 @@ app.post('/animals/add', upload.single('Image'), (req, res, next) => {
     })
 })
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
-
+ 
 //TODO: Delete Route
 
 // Database
@@ -138,27 +134,30 @@ passport.deserializeUser(UserDetails.deserializeUser());
 
 const connectEnsureLogin = require('connect-ensure-login');
 
+app.get('/login', function (req, res) {
+    res.send({ msg: "Hello Dogs" });
+});
+
 app.post('/login', (req, res, next) => {
-  passport.authenticate('local',
-  (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-
-    if (!user) {
-      return res.redirect('/login?info=' + info);
-    }
-
-    req.logIn(user, function(err) {
+    passport.authenticate('local',
+    (err, user, info) => {
       if (err) {
         return next(err);
       }
-
-      return res.redirect('/');
-    });
-
-  })(req, res, next);
-});
-
-UserDetails.register({username:'paul', active: false}, 'paul')
+  
+      if (!user) {
+        return res.redirect('/login?info=' + info);
+      }
+  
+      req.logIn(user, function(err) {
+        if (err) {
+          return next(err);
+        }
+  
+        return res.redirect('/');
+      });
+  
+    })(req, res, next);
+  });
+  
 

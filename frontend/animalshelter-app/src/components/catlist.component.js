@@ -7,6 +7,9 @@ const Cat = props => (
         <td>{props.cat.Species}</td>
         <td>{props.cat.Name}</td>
         <td><img src={props.cat.Image} height="100"></img></td>
+        <td>{props.cat.Description}</td>
+        <td>{props.cat.Birthdate}</td>
+        <td>{props.cat.IsEmergencyCase.toString() }</td>
     </tr>
 )
 
@@ -51,6 +54,9 @@ export default class CatList extends Component {
                             <th>Species</th>  
                             <th>Name</th>
                             <th>Image</th>
+                            <th>Description</th>
+                            <th>Birthdate</th>
+                            <th>Emergency?</th>
                         </tr>
                     </thead>
                     <tbody>

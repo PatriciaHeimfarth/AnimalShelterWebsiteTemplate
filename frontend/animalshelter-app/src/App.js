@@ -6,6 +6,8 @@ import Main from "./components/main.component";
 import DogList from "./components/doglist.component";
 import CatList from "./components/catlist.component";
 import AddAnimal from "./components/add-animal.component";
+import Login from "./components/login.component";
+
 
 //Styles
 import './App.css';
@@ -47,6 +49,7 @@ class App extends Component {
           <Route path="/cats" component={CatList} />
           <Route path="/" exact component={Main} />
           <Route path="/add-animal" exact component={AddAnimal} />
+          <Route path="/login" exact component={Login} />
         </div>
       </Router>
     );

@@ -56,8 +56,11 @@ export default class AddAnimal extends Component {
     }
 
     onChangeAnimalIsEmergencyCase(e) {
+        const target = e.target;
+        const value = target.checked;
+        const name = target.name;
         this.setState({
-            IsEmergencyCase: e.target.value
+            [name]: value
         });
     }
     onSubmit(e) {
@@ -75,11 +78,10 @@ export default class AddAnimal extends Component {
 
         this.setState({
             Name: '',
-            Species: 'Dog',
+            Species: '',
             Image: '',
             Description: '',
-            Birthdate: '',
-            IsEmergencyCase: true
+            Birthdate: '',        
         })
     }
 
@@ -127,8 +129,8 @@ export default class AddAnimal extends Component {
                         <label>Is Emergency Case: </label>
                         <br></br>
                         <input type="checkbox"
-                            className="form-control"
-                            checked={this.state.IsEmergencyCase.toString()}
+                            name="IsEmergencyCase" 
+                            checked={this.state.IsEmergencyCase }
                             onChange={this.onChangeAnimalIsEmergencyCase}
                         />
                     </div>

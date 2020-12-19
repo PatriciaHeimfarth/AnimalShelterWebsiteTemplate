@@ -94,6 +94,12 @@ app.post('/animals/add', upload.single('Image'), (req, res, next) => {
     })
 })
 
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
 //TODO: Delete Route
 
 // Database

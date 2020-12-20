@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 const axios = require("axios");
 
-
 export default class AddAnimal extends Component {
 
     constructor(props) {

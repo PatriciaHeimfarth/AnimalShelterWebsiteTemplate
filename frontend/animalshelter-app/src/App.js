@@ -1,43 +1,27 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //Components
 import Main from "./components/main.component";
 import DogList from "./components/doglist.component";
 import CatList from "./components/catlist.component";
 import AddAnimal from "./components/add-animal.component";
-import Login from "./components/login.component";
-import { Redirect } from 'react-router-dom'
+import Login from "./components/login";
+import PrivateRoute from './Utils/PrivateRoute';
+import PublicRoute from './Utils/PublicRoute';
+import { getToken, removeUserSession, setUserSession } from './Utils/Common';
 
 
 //Styles
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const isLoggedIn = () => {
-  return localStorage.getItem('TOKEN_KEY') != null;
-};
-
-const SecuredRoute = ({ component: Component, ...rest }) => (
-
-  <Route
-    {...rest}
-    render={props =>
-
-      isLoggedIn() === true ? (
-        <Component {...props} />
-      ) : (
-          <Redirect to="/login" />
-        )
-    }
-  />
-);
 
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div className="container">
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
@@ -65,21 +49,18 @@ class App extends Component {
           <br />
           <br />
           <br />
-          <Router>
-        
-              <div>
-                {isLoggedIn()}
+          <Switch>       
+              <div>      
                 <Route path="/dogs" component={DogList} />
                 <Route path="/cats" component={CatList} />
                 <Route path="/" exact component={Main} />
-                <SecuredRoute path="/add-animal" exact component={AddAnimal} />
-                <Route path="/login" exact component={Login} />
-                {isLoggedIn()}
+                <PrivateRoute path="/add-animal" exact component={AddAnimal} />
+                <Route path="/login" exact component={Login} />         
               </div>
-   
-          </Router>
+  
+          </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

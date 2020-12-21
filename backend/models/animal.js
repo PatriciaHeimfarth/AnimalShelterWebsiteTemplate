@@ -6,28 +6,32 @@ const animalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   Name: {
     type: String,
     required: true,
   },
+
   Image: {
-    type: String,
-     
+    type: String,   
   },
+
   Description: {
-    type: String,
-   
+    type: String, 
   },
+
   Birthdate: {
-    type: Date,
-     
+    type: Date, 
   },
 
   IsEmergencyCase: {
-    type: Boolean,
-     
-  }
+    type: Boolean,   
+  },
 
+  Adopted: {
+    type: Boolean,
+    required: true,
+  }
   
 })
 module.exports = mongoose.model('Animal', animalSchema)

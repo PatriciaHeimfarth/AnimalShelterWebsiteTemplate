@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {  Link } from "react-router-dom";
 import axios from 'axios';
  
 
@@ -10,6 +11,7 @@ const Cat = props => (
         <td>{props.cat.Description}</td>
         <td>{props.cat.Birthdate}</td>
         <td>{props.cat.IsEmergencyCase.toString() }</td>
+        <td><Link to={"/details/"+props.cat._id}>Details</Link></td>
     </tr>
 )
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {  Link } from "react-router-dom";
+
 import axios from 'axios';
  
 
@@ -10,6 +12,7 @@ const Dog = props => (
         <td>{props.dog.Description}</td>
         <td>{props.dog.Birthdate}</td>
         <td>{props.dog.IsEmergencyCase.toString() }</td>
+        <td><Link to={"/details/"+props.dog._id}>Details</Link></td>
     </tr>
 )
 

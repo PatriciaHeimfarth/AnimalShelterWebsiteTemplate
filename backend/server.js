@@ -71,6 +71,13 @@ app.get("/animals", function (req, res) {
     });
 });
 
+app.get("/animals/:id", function (req, res) {
+    let id = req.params.id;
+    Animal.findById(id, function(err, animal) {
+        res.json(animal);
+    });
+});
+
 
 app.post('/animals/add', upload.single('Image'), (req, res, next) => {
     console.log(req.file)

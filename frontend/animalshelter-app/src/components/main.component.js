@@ -1,7 +1,43 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+ 
 
 export default class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { animals: []};
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/animals/')
+            .then(response => {
+                this.setState({ animals: response.data });            
+                console.table(this.state.images)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    imagesList() {
+        return this.state.animals.map(function (currentAnimal, i) {
+            
+                if (currentAnimal.Image !== undefined) {
+                    currentAnimal.Image = (currentAnimal.Image).substring(36);
+                    console.log(currentAnimal.Image);
+               
+                }
+                return currentAnimal.Image;          
+
+        })
+    }
+
+
     render() {
+
+       
         return (
             <main>
                 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -58,7 +94,7 @@ export default class Main extends Component {
 
                     <div class="row">
                         <div class="col-lg-4">
-                            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image width="100%" height="100%" href="images/test.jpg"/></svg>
+                            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image width="100%" height="100%" href={this.imagesList()[1]} /></svg>
 
                             <h2>Heading</h2>
                             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>

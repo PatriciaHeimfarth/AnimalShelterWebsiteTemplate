@@ -81,7 +81,7 @@ app.get("/animals/:id", function (req, res) {
 
 app.post('/animals/add', upload.single('Image'), (req, res, next) => {
     console.log(req.file)
-    connectEnsureLogin.ensureLoggedIn();
+    //connectEnsureLogin.ensureLoggedIn();
     const animal = new Animal({
         _id: new mongoose.Types.ObjectId(),
         Species: req.body.Species,

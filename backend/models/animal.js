@@ -28,10 +28,5 @@ const animalSchema = new mongoose.Schema({
     type: Boolean,   
   },
 
-  Adopted: {
-    type: Boolean,
-    required: true,
-  }
-  
 })
 module.exports = mongoose.model('Animal', animalSchema)

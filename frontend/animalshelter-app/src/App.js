@@ -7,6 +7,7 @@ import DogList from "./components/doglist.component";
 import CatList from "./components/catlist.component";
 import AddAnimal from "./components/add-animal.component";
 import AnimalDetails from "./components/animal-details.component";
+import AnimalDelete from "./components/delete-animal.component";
 import Login from "./components/login";
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicRoute from './Utils/PublicRoute';
@@ -58,7 +59,7 @@ class App extends Component {
                 <PrivateRoute path="/add-animal" exact component={AddAnimal} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/details/:id" component={AnimalDetails} />
-                 
+                <Route path="/delete" component={AnimalDelete} />
               </div>
   
           </Switch>

@@ -11,7 +11,7 @@ const Animal = props => (
         <td>{props.animal.Birthdate}</td>
         <td>{props.animal.IsEmergencyCase.toString()}</td>
         <td><Link to={"/details/" + props.animal._id}>Details</Link></td>
-        <td><Link to={"/delete" }>Löschen</Link></td>
+        <td><Link to={`/delete/${props.animal._id}` }>Löschen</Link></td>
     </tr>
 )
 

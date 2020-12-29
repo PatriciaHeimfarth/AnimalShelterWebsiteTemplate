@@ -59,7 +59,7 @@ class App extends Component {
                 <PrivateRoute path="/add-animal" exact component={AddAnimal} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/details/:id" component={AnimalDetails} />
-                <Route path="/delete" component={AnimalDelete} />
+                <Route path="/delete/:id" component={AnimalDelete} />
               </div>
   
           </Switch>

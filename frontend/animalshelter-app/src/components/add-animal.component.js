@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 const axios = require("axios");
+const Animal = props => (
+    <tr>
+        <td>{props.animal.Species}</td>
+        <td>{props.animal.Name}</td>
+        <td><img src={props.animal.Image} height="100"></img></td>
+        <td>{props.animal.Description}</td>
+        <td>{props.animal.Birthdate}</td>
+        <td>{props.animal.IsEmergencyCase.toString()}</td>
+        <td><Link to={"/details/" + props.animal._id}>Details</Link></td>
+    </tr>
+)
 
 export default class AddAnimal extends Component {
 
@@ -16,13 +29,41 @@ export default class AddAnimal extends Component {
 
         this.state = {
             Name: '',
-            Species: 'Dog',
+            Species: '',
             Image: '',
             Description: '',
             Birthdate: '',
-            IsEmergencyCase: true
+            IsEmergencyCase: true,
+            animals: []
         }
     }
+
+    
+    componentDidMount() {
+        axios.get('http://localhost:4000/animals/')
+            .then(response => {
+                this.setState({ animals: response.data });
+                console.table(this.animals);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    animalsList() {
+        return this.state.animals.map(function (currentAnimal, i) {
+
+                if (currentAnimal.Image !== undefined) {
+                    currentAnimal.Image = (currentAnimal.Image).substring(18);
+                    console.log(currentAnimal.Image);
+                }
+                return <Animal animal={currentAnimal} key={i} />;
+
+
+        })
+    }
+
 
     onChangeAnimalName(e) {
         this.setState({
@@ -144,6 +185,35 @@ export default class AddAnimal extends Component {
                         <input type="submit" value="Add new Animal" className="btn btn-primary" />
                     </div>
                 </form>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <hr></hr>
+               
+                <h3>Animal List</h3>
+                <table className="table table-striped" style={{ marginTop: 20 }} >
+                    <thead>
+                        <tr>
+                            <th>Species</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Description</th>
+                            <th>Birthdate</th>
+                            <th>Emergency?</th>
+                            <th>Details</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.animalsList()}
+                    </tbody>
+                </table>
+
             </div>
         )
     }

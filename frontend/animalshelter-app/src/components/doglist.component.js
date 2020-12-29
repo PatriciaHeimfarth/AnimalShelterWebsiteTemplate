@@ -49,12 +49,7 @@ export default class DogList extends Component {
 
     render() {
 
-        const isLoggedIn = true;
-        let deleteHeader;
-        if (isLoggedIn) {
-            deleteHeader = <th></th>;
-        }
-
+    
         return (
             <div>
                 <h3>Dog List</h3>
@@ -68,7 +63,7 @@ export default class DogList extends Component {
                             <th>Birthdate</th>
                             <th>Emergency?</th>
                             <th>Details</th>
-                            {deleteHeader}
+                            
                         </tr>
                     </thead>
                     <tbody>

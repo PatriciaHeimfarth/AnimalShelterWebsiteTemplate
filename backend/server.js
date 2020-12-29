@@ -73,7 +73,7 @@ app.get("/animals", function (req, res) {
 
 app.get("/animals/:id", function (req, res) {
     let id = req.params.id;
-    Animal.findById(id, function(err, animal) {
+    Animal.findById(id, function (err, animal) {
         res.json(animal);
     });
 });
@@ -111,7 +111,22 @@ app.post('/animals/add', upload.single('Image'), (req, res, next) => {
 })
 
 
-//TODO: Delete Route
+app.post('/animals/delete', (req, res, next) => {
+    Animal.deleteOne({ _id: req.body.id }).then(
+        () => {
+            res.status(200).json({
+                message: 'Animal deleted successfully'
+            });
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
+});
+
 
 // Database
 
@@ -148,18 +163,18 @@ app.use(function (req, res, next) {
     });
 });
 
- app.post('/users/signin', function (req, res) {
+app.post('/users/signin', function (req, res) {
     const user = req.body.username;
     const password = req.body.password;
 
-     if (!user || !password) {
+    if (!user || !password) {
         return res.status(400).json({
             error: true,
             message: "Username or Password required."
         });
     }
 
-     if (user !== userData.username || password !== userData.password) {
+    if (user !== userData.username || password !== userData.password) {
         return res.status(401).json({
             error: true,
             message: "Username or Password is not correct."

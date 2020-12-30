@@ -30,7 +30,7 @@ export default class AddAnimal extends Component {
 
         this.state = {
             Name: '',
-            Species: '',
+            Species: 'Dog',
             Image: '',
             Description: '',
             Birthdate: '',
